@@ -8,6 +8,14 @@ pipeline {
         }
         stage('Run Test') {
             steps {
+                sh "pwd"
+               sh "mvn test"
+            }
+        }
+        
+        stage('Run Test2') {
+            steps {
+               sh "pwd"
                sh "mvn test"
             }
         }

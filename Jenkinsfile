@@ -8,8 +8,9 @@ pipeline {
         }
         stage('Run Test') {
             steps {
-                sh "pwd"
-               sh "mvn release:prepare"
+                sshagent (['my-ssh-key']) {
+              sh "mvn release:prepare"
+                }
             }
         }
          

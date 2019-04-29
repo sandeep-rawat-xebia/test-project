@@ -35,8 +35,8 @@ pipeline {
                         }
                        
                         environment {
-                              TAG_SELECTOR = readMavenPom().getVersion()
-                         }
+                            JENKINS_PATH = sh(script: 'pwd', , returnStdout: true).trim()
+                        }
                        
                        echo("TAG_SELECTOR=${TAG_SELECTOR}") 
                        

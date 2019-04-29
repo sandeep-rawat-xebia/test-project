@@ -5,7 +5,7 @@
 
   <groupId>com.sample</groupId>
   <artifactId>SampleWebApp123</artifactId>
-  <version>1.2.11-SNAPSHOT</version>
+  <version>\20190429-174208.\c391e04</version>
 
   <name>SampleWebApp123</name>
   <!-- FIXME change it to the project's website -->
@@ -47,12 +47,22 @@
 
   <build>
     <plugins>
-
       <plugin>
         <groupId>pl.project13.maven</groupId>
         <artifactId>git-commit-id-plugin</artifactId>
+        <version>2.2.4</version>
+        <executions>
+          <execution>
+            <phase>validate</phase>
+            <goals>
+              <goal>revision</goal>
+            </goals>
+          </execution>
+        </executions>
         <configuration>
-          <excludeProperties>git.build.user.*,git.commit.user.*,git.remote.*,git.closest.*</excludeProperties>
+          <dateFormat>yyyyMMdd-HHmmss</dateFormat><!--  human-readable part of the version number -->
+          <dotGitDirectory>${project.basedir}/.git</dotGitDirectory>
+          <generateGitPropertiesFile>false</generateGitPropertiesFile><!-- somehow necessary. otherwise the variables are not available in the pom -->
         </configuration>
       </plugin>
       <plugin>
@@ -61,18 +71,6 @@
         <version>1.9.5</version>
         <configuration>
           <tag>v${project.version}</tag>
-        </configuration>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-release-plugin</artifactId>
-        <version>2.5.3</version>
-        <configuration>
-          <preparationGoals>package</preparationGoals>
-          <tagNameFormat>@{project.version}</tagNameFormat>
-          <remoteTagging>false</remoteTagging>
-          <useReleaseProfile>false</useReleaseProfile>
         </configuration>
       </plugin>
     </plugins>

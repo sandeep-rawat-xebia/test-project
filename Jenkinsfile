@@ -28,12 +28,6 @@ pipeline {
                     steps {
                        sh "zip -r dbscripts.zip SQLScripts"
                        sh "mvn clean install -DskipTests"
-
-                        script {
-                                            TAG_SELECTOR = readMavenPom().getVersion()
-                                        }
-                                        echo("TAG_SELECTOR=${TAG_SELECTOR}")
-
                     }
                 }
 
@@ -42,9 +36,13 @@ pipeline {
                              sh "echo configure settings.xml"
                              //   sh "mvn deploy -DskipTests"
                 }
-          }
-
-
-         
+          }  
     }
+    
+    post { 
+        always { 
+            export MY_POM_VERSION='mvn -q -Dexec.executable="echo" -Dexec.args='${projects.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec'
+        }
+    }
+    
 }

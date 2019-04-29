@@ -33,7 +33,13 @@ pipeline {
                        script {
                              TAG_SELECTOR = readMavenPom().getVersion()
                         }
+                       
+                        environment {
+                              TAG_SELECTOR = readMavenPom().getVersion()
+                         }
+                       
                        echo("TAG_SELECTOR=${TAG_SELECTOR}") 
+                       
                         
                         
                     }

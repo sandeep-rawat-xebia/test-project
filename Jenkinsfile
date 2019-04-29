@@ -9,15 +9,9 @@ pipeline {
         stage('Run Test') {
             steps {
                 sh "pwd"
-               sh "mvn test"
+               sh "mvn release:prepare"
             }
         }
-        
-        stage('Run Test2') {
-            steps {
-               sh "pwd"
-               sh "mvn test"
-            }
-        }
+         
     }
 }

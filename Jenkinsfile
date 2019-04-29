@@ -3,12 +3,12 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-               build "Build Project"
+               sh "mvn clean install"
             }
         }
         stage('Run Test') {
             steps {
-                 
+               
               sh "mvn clean -DskipTests -Darguments=-DskipTests release:clean release:prepare release:perform"
                 
             }

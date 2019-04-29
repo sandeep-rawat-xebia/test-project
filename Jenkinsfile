@@ -16,9 +16,9 @@ pipeline {
         stage('Set Version') {
             steps {
               script { if (env.RELEASE_TYPE == 'SNAPSHOT') {
-                       sh 'mvn pl.project13.maven:git-commit-id-plugin:2.2.4:revision -DdateFormat=yyyyMMdd-HHmmss  versions:set -DnewVersion=\${git.commit.time}.\${git.commit.id.abbrev}-SNAPSHOT versions:commit'
+                       sh "mvn pl.project13.maven:git-commit-id-plugin:2.2.4:revision -DdateFormat=yyyyMMdd-HHmmss  versions:set -DnewVersion=\\\${git.commit.time}.\\\${git.commit.id.abbrev}-SNAPSHOT versions:commit'
                        } else {
-                        sh 'mvn pl.project13.maven:git-commit-id-plugin:2.2.4:revision -DdateFormat=yyyyMMdd-HHmmss  versions:set -DnewVersion=\${git.commit.time}.\${git.commit.id.abbrev} versions:commit'
+                        sh "mvn pl.project13.maven:git-commit-id-plugin:2.2.4:revision -DdateFormat=yyyyMMdd-HHmmss  versions:set -DnewVersion=\\\${git.commit.time}.\\\${git.commit.id.abbrev} versions:commit'
                        }
                }
             }

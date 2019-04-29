@@ -33,9 +33,12 @@ pipeline {
 
          stage('Push to Repository') {
                              steps {
-                                sh "mvn deploy -DskipTests"
+                             sh "echo configure settings.xml"
+                             //   sh "mvn deploy -DskipTests"
                 }
           }
+
+
          
     }
 }

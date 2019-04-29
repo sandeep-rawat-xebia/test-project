@@ -17,6 +17,19 @@
     <maven.compiler.target>1.7</maven.compiler.target>
   </properties>
 
+  <distributionManagement>
+    <snapshotRepository>
+      <id>snapshots</id>
+      <name>d5497026838e-snapshots</name>
+      <url>http://localhost:8081/artifactory/libs-snapshot-local</url>
+    </snapshotRepository>
+    <repository>
+      <id>central</id>
+      <name>d5497026838e-releases</name>
+      <url>http://localhost:8081/artifactory/libs-release-local</url>
+    </repository>
+  </distributionManagement>
+
   <dependencies>
     <dependency>
       <groupId>junit</groupId>

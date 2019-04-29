@@ -8,16 +8,11 @@ pipeline {
         }
         stage('Run Test') {
             steps {
-                sh "pwd"
-               sh "mvn test"
+                 
+              sh "mvn clean -DskipTests -Darguments=-DskipTests release:prepare release:perform"
+                
             }
         }
-        
-        stage('Run Test2') {
-            steps {
-               sh "pwd"
-               sh "mvn test"
-            }
-        }
+         
     }
 }

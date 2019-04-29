@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Run Test') {
             steps {
-                sshagent (['my-ssh-key']) {
+                sshagent (['sandeep-rawat-git']) {
               sh "mvn release:prepare"
                 }
             }

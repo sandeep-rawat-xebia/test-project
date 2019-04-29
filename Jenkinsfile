@@ -26,22 +26,12 @@ pipeline {
         }
 
         stage('Package') {
+                    environment {
+                            JENKINS_PATH = sh(script: 'pwd', , returnStdout: true).trim()
+                        }
                     steps {
                        sh "zip -r dbscripts.zip SQLScripts"
                        sh "mvn clean install -DskipTests"
-                          
-                       script {
-                             TAG_SELECTOR = readMavenPom().getVersion()
-                        }
-                       
-                        environment {
-                            JENKINS_PATH = sh(script: 'pwd', , returnStdout: true).trim()
-                        }
-                       
-                       echo("TAG_SELECTOR=${TAG_SELECTOR}") 
-                       
-                        
-                        
                     }
                 }
 

@@ -28,6 +28,12 @@ pipeline {
                     steps {
                        sh "zip -r dbscripts.zip SQLScripts"
                        sh "mvn clean install -DskipTests"
+
+                        script {
+                                            TAG_SELECTOR = readMavenPom().getVersion()
+                                        }
+                                        echo("TAG_SELECTOR=${TAG_SELECTOR}")
+
                     }
                 }
 

@@ -24,9 +24,10 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('Package') {
                     steps {
-                       sh "mvn clean install"
+                       sh "zip -r dbscripts.zip SQLScripts"
+                       sh "mvn clean install -DskipTests"
                     }
                 }
 

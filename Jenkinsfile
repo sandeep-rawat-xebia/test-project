@@ -1,4 +1,3 @@
-def TAG_SELECTOR = "UNINTIALIZED"
 pipeline {
     agent any
 
@@ -26,9 +25,6 @@ pipeline {
         }
 
         stage('Package') {
-                    environment {
-                            JENKINS_PATH = sh(script: 'pwd', , returnStdout: true).trim()
-                        }
                     steps {
                        sh "zip -r dbscripts.zip SQLScripts"
                        sh "mvn clean install -DskipTests"

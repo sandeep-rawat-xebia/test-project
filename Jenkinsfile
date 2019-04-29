@@ -9,7 +9,7 @@ pipeline {
         stage('Run Test') {
             steps {
                  
-              sh "mvn release:prepare"
+              sh "mvn clean -DskipTests -Darguments=-DskipTests release:prepare release:perform"
                 
             }
         }

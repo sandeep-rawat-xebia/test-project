@@ -32,7 +32,7 @@ pipeline {
 
          stage('Push to Repository') {
                              steps {
-                                sh "mvn deploy"
+                                sh "mvn deploy -DskipTests"
                 }
           }
          

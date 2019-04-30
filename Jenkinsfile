@@ -1,9 +1,11 @@
+def VERSION_NUMBER = '1233333'
+
 pipeline {
     agent any
 
     parameters {
-    	string (
-    	  defaultValue: "SNAPSHOT",description: 'Upload this version to repository?',name : 'RELEASE_TYPE')
+    	string ( defaultValue: "SNAPSHOT",description: 'Upload this version to repository?',name : 'RELEASE_TYPE'),
+        string ( defaultValue: VERSION_NUMBER ,description: 'Upload this version to repository?',name : 'VERSION_NUMBER')
       }
 
     stages {
@@ -20,6 +22,7 @@ pipeline {
                        } else {
                         sh "mvn pl.project13.maven:git-commit-id-plugin:2.2.4:revision -DdateFormat=yyyyMMdd-HHmmss  versions:set -DnewVersion=\\\${git.commit.time}.\\\${git.commit.id.abbrev} versions:commit"
                        }
+                      sh "echo ${VERSION_NUMBER}"
                }
             }
         }

@@ -1,4 +1,4 @@
-def VERSION_NUMBER = '1233333'
+def VERSION_NUMBER = $(date +%Y%m%d%H%M%S) 
 
 pipeline {
     agent any

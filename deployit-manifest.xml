@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<udm.DeploymentPackage version="1.0" application="SqlScripts">
+  <application />
+  <orchestrator />
+  <deployables>
+    <wls.Ear name="/ear" file="target/test-project.ear">
+      <redeploymentStrategy>CLASSIC</redeploymentStrategy>
+      <retireTimeout>100</retireTimeout>
+      <deploymentOrder>100</deploymentOrder>
+    </wls.Ear>
+    <sql.SqlScripts name="/scripts" file="sqlscripts.zip">
+    </sql.SqlScripts>
+  </deployables>
+  <applicationDependencies />
+  <dependencyResolution>LATEST</dependencyResolution>
+  <undeployDependencies>false</undeployDependencies>
+  <templates />
+  <boundTemplates />
+</udm.DeploymentPackage>

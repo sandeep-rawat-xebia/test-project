@@ -39,7 +39,17 @@ pipeline {
                              sh "echo configure settings.xml"
                              //   sh "mvn deploy -DskipTests"
                 }
-          }  
+          }
+
+
+          stage('Push to XL Deploy') {
+                                       steps {
+                                       sh "cp target/SampleWe* target/test-project.ear"
+                                       xldCreatePackage artifactsPath: '.', manifestPath: 'deployit-manifest.xml', darPath: '$JOB_NAME-$BUILD_NUMBER.0.dar'
+                          }
+                    }
+
+
     }
     
    

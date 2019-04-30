@@ -44,8 +44,10 @@ pipeline {
 
           stage('Push to XL Deploy') {
                                        steps {
-                                       sh "cp target/SampleWe* target/test-project.ear"
-                                       xldCreatePackage artifactsPath: '../', manifestPath: '../deployit-manifest.xml', darPath: '../target/$JOB_NAME-$BUILD_NUMBER.0.dar'
+                                       mkdir build
+                                       sh "cp target/SampleWe* build/test-project.ear"
+                                       sh "cp dbscripts.zip build/dbscripts.zip"
+                                       xldCreatePackage artifactsPath: '.', manifestPath: 'deployit-manifest.xml', darPath: '$JOB_NAME-$BUILD_NUMBER.0.dar'
                           }
                     }
 

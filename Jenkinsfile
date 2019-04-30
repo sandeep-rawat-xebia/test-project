@@ -4,7 +4,7 @@ pipeline {
     agent any
 
     parameters {
-    	string ( defaultValue: "SNAPSHOT",description: 'Upload this version to repository?',name : 'RELEASE_TYPE'),
+    	string ( defaultValue: "SNAPSHOT",description: 'Upload this version to repository?',name : 'RELEASE_TYPE')
         string ( defaultValue: VERSION_NUMBER ,description: 'Upload this version to repository?',name : 'VERSION_NUMBER')
       }
 

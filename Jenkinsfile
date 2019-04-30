@@ -2,7 +2,6 @@ pipeline {
     agent any
 
     parameters {
-    	string ( defaultValue: "SNAPSHOT",description: 'Release type SNAPSHOT or Release',name : 'RELEASE_TYPE')
         string ( defaultValue: "DEFAULT" ,description: 'Version Number to use?',name : 'VERSION_NUMBER')
       }
 
@@ -21,16 +20,11 @@ pipeline {
         stage('Set Version') {
             steps {
               script {
-                      MY_VERSION_NUMBER = env.VERSION_NUMBER
-                      if(MY_VERSION_NUMBER == 'DEFAULT'){
-                        MY_VERSION_NUMBER = new Date().format("yyyyMMdd.HHmmss")
+                      MAVEN_VERSION = env.VERSION_NUMBER
+                      if(MAVEN_VERSION == 'DEFAULT'){
+                        MAVEN_VERSION = new Date().format("yyyyMMdd.HHmmss")+"SNAPSHOT"
                       }
-                      if (env.RELEASE_TYPE == 'SNAPSHOT') {
-                       sh "mvn pl.project13.maven:git-commit-id-plugin:2.2.4:revision -DdateFormat=yyyyMMdd-HHmmss  versions:set -DnewVersion=\\\${git.commit.time}.\\\${git.commit.id.abbrev}-SNAPSHOT versions:commit"
-                       } else {
-                        sh "mvn pl.project13.maven:git-commit-id-plugin:2.2.4:revision -DdateFormat=yyyyMMdd-HHmmss  versions:set -DnewVersion=\\\${git.commit.time}.\\\${git.commit.id.abbrev} versions:commit"
-                       }
-                      sh "echo ${VERSION_NUMBER}"
+                      sh "mvn pl.project13.maven:git-commit-id-plugin:2.2.4:revision -DdateFormat=yyyyMMdd-HHmmss  versions:set -DnewVersion=${MAVEN_VERSION} versions:commit"
                }
             }
         }
@@ -55,12 +49,11 @@ pipeline {
                                        script {
                                         MAVEN_VERSION = readMavenPom().getVersion()
                                        }
-                                       sh "echo ${MAVEN_VERSION}"
-                                       sh "sed -i -e 's/VERSION/${MAVEN_VERSION}/g' deployit-manifest.xml"
+                                       sh "sed -i -e 's/PACKAGE_VERSION/${MAVEN_VERSION}/g' deployit-manifest.xml"
                                        sh "cp target/SampleWe* target/test-project.ear"
                                        sh "cp dbscripts.zip target/sqlscripts.zip"
-                                       xldCreatePackage artifactsPath: 'target', manifestPath: 'deployit-manifest.xml', darPath: 'target/$JOB_NAME-$BUILD_NUMBER.0.dar'
-                                       xldPublishPackage serverCredentials: 'xldeploy', darPath: 'target/$JOB_NAME-$BUILD_NUMBER.0.dar'
+                                       xldCreatePackage artifactsPath: 'target', manifestPath: 'deployit-manifest.xml', darPath: 'target/xldeploy.dar'
+                                       xldPublishPackage serverCredentials: 'xldeploy', darPath: 'target/xldeploy.dar'
                           }
                     }
 

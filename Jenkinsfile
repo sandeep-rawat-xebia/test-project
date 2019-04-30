@@ -55,7 +55,7 @@ pipeline {
                                        sh "cp target/SampleWe* target/test-project.ear"
                                        sh "cp dbscripts.zip target/sqlscripts.zip"
                                        xldCreatePackage artifactsPath: 'target', manifestPath: 'deployit-manifest.xml', darPath: 'target/createtest.dar'
-                                   //    xldPublishPackage serverCredentials: 'xldeploy', darPath: 'build/test.dar'
+                                       xldPublishPackage serverCredentials: 'xldeploy', darPath: 'target/createtest.dar'
                           }
                     }
 

@@ -1,4 +1,4 @@
-def VERSION_NUMBER = new SimpleDateFormat("yyyyMMdd.HHmmss").format(new Date())
+def VERSION_NUMBER = new Date().format("yyyyMMdd.HHmmss")
 
 pipeline {
     agent any

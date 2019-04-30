@@ -56,7 +56,7 @@ pipeline {
                                         MAVEN_VERSION = readMavenPom().getVersion()
                                        }
                                        sh "echo ${MAVEN_VERSION}"
-                                       sh 'sed -i -e "s/VERSION/${MAVEN_VERSION}/g" deployit-manifest.xml'
+                                       sh "sed -i -e 's/VERSION/${MAVEN_VERSION}/g' deployit-manifest.xml"
                                        sh "cp target/SampleWe* target/test-project.ear"
                                        sh "cp dbscripts.zip target/sqlscripts.zip"
                                        xldCreatePackage artifactsPath: 'target', manifestPath: 'deployit-manifest.xml', darPath: 'target/$JOB_NAME-$BUILD_NUMBER.0.dar'

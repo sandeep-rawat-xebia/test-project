@@ -52,12 +52,10 @@ pipeline {
 
           stage('Push to XL Deploy') {
                                        steps {
-                                       sh "rm -rf build && mkdir build"
-                                       sh "cp target/SampleWe* build/test-project.ear"
-                                       sh "cp dbscripts.zip build/sqlscripts.zip"
-                                       sh "cp deployit-manifest.xml build/deployit-manifest.xml"
-                                       xldCreatePackage artifactsPath: '.', manifestPath: 'deployit-manifest.xml', darPath: 'build'
-                                       xldPublishPackage serverCredentials: 'xldeploy', darPath: 'build/test.dar'
+                                       sh "cp target/SampleWe* target/test-project.ear"
+                                       sh "cp dbscripts.zip target/sqlscripts.zip"
+                                       xldCreatePackage artifactsPath: 'target', manifestPath: 'deployit-manifest.xml', darPath: 'target/createtest.dar'
+                                   //    xldPublishPackage serverCredentials: 'xldeploy', darPath: 'build/test.dar'
                           }
                     }
 

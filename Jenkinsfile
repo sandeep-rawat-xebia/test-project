@@ -22,7 +22,7 @@ pipeline {
               script {
                       MAVEN_VERSION = env.VERSION_NUMBER
                       if(MAVEN_VERSION == 'DEFAULT'){
-                        MAVEN_VERSION = new Date().format("yyyyMMdd.HHmmss")+"SNAPSHOT"
+                        MAVEN_VERSION = new Date().format("yyyyMMdd.HHmmss")+"-SNAPSHOT"
                       }
                       sh "mvn pl.project13.maven:git-commit-id-plugin:2.2.4:revision -DdateFormat=yyyyMMdd-HHmmss  versions:set -DnewVersion=${MAVEN_VERSION} versions:commit"
                }
@@ -39,7 +39,7 @@ pipeline {
          stage('Push to Repository') {
                              steps {
                              sh "echo configure settings.xml"
-                             //   sh "mvn deploy -DskipTests"
+                             sh "mvn deploy -DskipTests"
                 }
           }
 

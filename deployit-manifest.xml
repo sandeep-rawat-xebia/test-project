@@ -3,12 +3,12 @@
   <application />
   <orchestrator />
   <deployables>
-    <wls.Ear name="/ear" file="test-project.ear">
+    <wls.Ear name="/ear" file="build/test-project.ear">
       <redeploymentStrategy>CLASSIC</redeploymentStrategy>
       <retireTimeout>100</retireTimeout>
       <deploymentOrder>100</deploymentOrder>
     </wls.Ear>
-    <sql.SqlScripts name="/scripts" file="sqlscripts.zip">
+    <sql.SqlScripts name="/scripts" file="build/sqlscripts.zip">
     </sql.SqlScripts>
   </deployables>
   <applicationDependencies />

@@ -1,4 +1,4 @@
-def VERSION_NUMBER = sh "echo $(date +%Y%m%d%H%M%S)"
+def VERSION_NUMBER = "echo $(date +%Y%m%d%H%M%S)"
 
 pipeline {
     agent any

@@ -2,11 +2,16 @@ pipeline {
     agent any
 
     parameters {
-    	string ( defaultValue: "SNAPSHOT",description: 'Upload this version to repository?',name : 'RELEASE_TYPE')
-        string ( defaultValue: "DEFAULT" ,description: 'Upload this version to repository?',name : 'VERSION_NUMBER')
+    	string ( defaultValue: "SNAPSHOT",description: 'Release type SNAPSHOT or Release',name : 'RELEASE_TYPE')
+        string ( defaultValue: "DEFAULT" ,description: 'Version Number to use?',name : 'VERSION_NUMBER')
       }
 
+      environment {
+      		PATH = '/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Wireshark.app/Contents/MacOS:/Users/sandeep/.rvm/bin'
+      	}
+
     stages {
+
         stage('Run Test Cases') {
             steps {
                sh "mvn test"

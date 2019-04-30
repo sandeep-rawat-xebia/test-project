@@ -47,6 +47,7 @@ pipeline {
                                        sh "rm -rf build && mkdir build"
                                        sh "cp target/SampleWe* build/test-project.ear"
                                        sh "cp dbscripts.zip build/dbscripts.zip"
+                                       sh "cp deployit-manifest.xml build/deployit-manifest.xml"
                                        xldCreatePackage artifactsPath: '.', manifestPath: 'deployit-manifest.xml', darPath: '$JOB_NAME-$BUILD_NUMBER.0.dar'
                           }
                     }

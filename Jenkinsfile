@@ -57,7 +57,7 @@ pipeline {
                                        sh "cp dbscripts.zip build/sqlscripts.zip"
                                        sh "cp deployit-manifest.xml build/deployit-manifest.xml"
                                        xldCreatePackage artifactsPath: '.', manifestPath: 'deployit-manifest.xml', darPath: 'build'
-                                       xldPublishPackage serverCredentials: 'xldeploy', darPath: 'build'
+                                       xldPublishPackage serverCredentials: 'xldeploy', darPath: 'build/test.dar'
                           }
                     }
 

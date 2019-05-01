@@ -49,6 +49,7 @@ pipeline {
                                        script {
                                         APPLICATION_VERSION = readMavenPom().getVersion() + '.' +env.BUILD_NUMBER
                                        }
+                                       sh "rm -f env.properties"
                                        sh "echo 'APPLICATION_VERSION=${APPLICATION_VERSION}' > env.properties"
                                        archiveArtifacts artifacts: 'env.properties', fingerprint: true
                                        //sh "echo '{\"APPLICATION_VERSION\":\"${APPLICATION_VERSION}\"}' >> env.properties"

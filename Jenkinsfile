@@ -47,9 +47,9 @@ pipeline {
           stage('Push to XL Deploy') {
                                        steps {
                                        script {
-                                        MAVEN_VERSION = readMavenPom().getVersion()
+                                        APPLICATION_VERSION = readMavenPom().getVersion() + env.BUILD_NUMBER
                                        }
-                                       sh "sed -i -e 's/PACKAGE_VERSION/${MAVEN_VERSION}/g' deployit-manifest.xml"
+                                       sh "sed -i -e 's/PACKAGE_VERSION/${APPLICATION_VERSION}/g' deployit-manifest.xml"
                                        sh "cp target/SampleWe* target/test-project.ear"
                                        sh "cp dbscripts.zip target/sqlscripts.zip"
                                        xldCreatePackage artifactsPath: 'target', manifestPath: 'deployit-manifest.xml', darPath: 'target/xldeploy.dar'

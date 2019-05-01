@@ -49,9 +49,8 @@ pipeline {
                                        script {
                                         APPLICATION_VERSION = readMavenPom().getVersion() + '.' +env.BUILD_NUMBER
                                        }
-                                       sh "echo 'APPLICATION_VERSION=${APPLICATION_VERSION}' > env.properties"
+                                       sh "echo '{\"APPLICATION_VERSION\":\"${APPLICATION_VERSION}\"}' >> env.properties"
                                        archiveArtifacts artifacts: 'env.properties', fingerprint: true
-                                       //sh "echo '{\"APPLICATION_VERSION\":\"${APPLICATION_VERSION}\"}' >> env.properties"
                                        sh "sed -i -e 's/PACKAGE_VERSION/${APPLICATION_VERSION}/g' deployit-manifest.xml"
                                        sh "cp target/SampleWe* target/test-project.ear"
                                        sh "cp dbscripts.zip target/sqlscripts.zip"
